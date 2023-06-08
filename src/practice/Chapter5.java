@@ -29,7 +29,9 @@ public class Chapter5 {
 		Task task3 = new Task(LocalDate.of(2021,12,4), "手帳を買う。");
 		Task task4 = new Task(LocalDate.of(2021,8,10), "散髪に行く");
 		Task task5 = new Task(LocalDate.of(2021,11,9), "スクールの課題を解く。");
-			
+		//Taskクラスはprivate変数なので、getter使わないと出力できないので注意
+		//System.out.println( task1.getDate() + ":" + task1.getTask() );	
+		
 		//リストにいれる
 		List<Task> list = new ArrayList<Task>();
 		list.add(task1);
@@ -37,6 +39,11 @@ public class Chapter5 {
 		list.add(task3);
 		list.add(task4);	
 		list.add(task5);
+		
+		//確認用
+		//for(Task e: list) {
+		//	System.out.println( e.getDate() + ":" + e.getTask() );
+		//}
 		
 		//順番を並び替える。⇒List.sort(Comparator)メソッド
 		list.sort(Comparator.comparing(Task::getDate));
@@ -48,3 +55,43 @@ public class Chapter5 {
 
 	}
 }
+
+/*
+List.sort(Comparator)メソッド　：この形だと昇順で並び替え
+Comparatorインターフェース：順序付けをする比較関数
+.Comparing(Task::getDate)メソッド：Taskオブジェクトを日付で比較する。
+
+[メンターさん評価ポイント]
+・要件通りに機能できています。
+・日付（LocalDate型）とタスク内容（String型）を持つTaskクラスを作成できています。
+・Comparatorを使ってソートすることができています。
+・インデントが揃った、きれいなコードを書けています
+
+*/
+
+/*
+解答例：TaskクラスでComparableインタフェースを使う
+
+package practice;
+
+public class Chapter5 {
+
+  public static void main(String[] args) {
+    List<Task> list = new ArrayList<>();
+    list.add(new Task(LocalDate.of(2021, 10, 21), "牛乳を買う"));
+    list.add(new Task(LocalDate.of(2021, 9, 15), "○○社面接"));
+    list.add(new Task(LocalDate.of(2021, 12, 4), "手帳を買う"));
+    list.add(new Task(LocalDate.of(2021, 8, 10), "散髪に行く"));
+    list.add(new Task(LocalDate.of(2021, 11, 9), "スクールの課題を解く"));
+
+    // 並び替えを実行
+    Collections.sort(list);
+
+    for (Task2 t : list) {
+      System.out.println(t.getDate() + ":" + t.getTask());
+    }
+  }
+
+}
+
+*/
